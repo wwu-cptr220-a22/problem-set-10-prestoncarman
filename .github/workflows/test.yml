@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
-      - run: cd react-firebase-v9
-      - run: npm install
-      - run: npm test
+      - run: |
+          cd react-firebase-v9
+          npm install
+          npm test
