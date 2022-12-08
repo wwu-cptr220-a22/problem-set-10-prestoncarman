@@ -1,25 +1,62 @@
-import logo from './logo.svg'
-import './App.css'
-
-function App () {
+import { useState } from 'react';
+import './App.css';
+import Form from './Components/Common/Form';
+import Home from './Components/Home';
+import {
+  Routes,
+  Route,
+  useNavigate
+} from "react-router-dom";
+import { app } from './firebase-config';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  let navigate = useNavigate();
+  const handleAction = (id) => {
+    const authentication = getAuth();
+    if (id === 2) {
+      createUserWithEmailAndPassword(authentication, email, password)
+        .then((response) => {
+          navigate('/home')
+          sessionStorage.setItem('Auth Token', response._tokenResponse.refreshToken)
+        })
+    }
+  }
   return (
-    <div className='app'>
-      <header className='app-header'>
-        <img src={logo} className='app-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='app-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App">
+      <>
+        <Routes>
+          <Route
+            path='/login'
+            element={
+              <Form
+                title="Login"
+                setEmail={setEmail}
+                setPassword={setPassword}
+                handleAction={() => handleAction(1)}
+              />}
+          />
+          <Route
+            path='/register'
+            element={
+              <Form
+                title="Register"
+                setEmail={setEmail}
+                setPassword={setPassword}
+                handleAction={() => handleAction(2)}
+              />}
+          />
+
+          <Route
+            path='/home'
+            element={
+              <Home />}
+          />
+        </Routes>
+      </>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
