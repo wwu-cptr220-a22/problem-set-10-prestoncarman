@@ -14,6 +14,7 @@ function App() {
   const [password, setPassword] = useState('');
   let navigate = useNavigate();
   const handleAction = (id) => {
+    console.log("handle")
     const authentication = getAuth();
     if (id === 2) {
       createUserWithEmailAndPassword(authentication, email, password)
