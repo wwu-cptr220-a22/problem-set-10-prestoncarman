@@ -16,10 +16,6 @@ function App () {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const handleAction = (id) => {
-<<<<<<< HEAD
-    console.log("handle")
-    const authentication = getAuth();
-=======
     const authentication = getAuth()
     if (id === 1) {
       signInWithEmailAndPassword(authentication, email, password)
@@ -37,7 +33,6 @@ function App () {
           }
         })
     }
->>>>>>> solution
     if (id === 2) {
       createUserWithEmailAndPassword(authentication, email, password)
         .then((response) => {
