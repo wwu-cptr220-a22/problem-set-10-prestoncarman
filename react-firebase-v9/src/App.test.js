@@ -11,14 +11,14 @@ test('Renders without errors', () => {
 })
 
 test('Renders button', () => {
-    render(<Button title="Test Button" />)
-    expect(screen.getAllByRole('button').length).toBe(1)
-    expect(screen.getByText(/test button/i)).toBeInTheDocument()
+  render(<Button title='Test Button' />)
+  expect(screen.getAllByRole('button').length).toBe(1)
+  expect(screen.getByText(/test button/i)).toBeInTheDocument()
 })
 
 // BasicTextFields ({ title, setPassword, setEmail, handleAction })
 test('Renders form', () => {
-    render(<Form title="Login" />)
-    expect(screen.getAllByRole('button').length).toBe(1)
-    expect(screen.getAllByText(/Login/i).length).toBe(2)
+  render(<Form title='Login' />)
+  expect(screen.getAllByRole('button').length).toBe(1)
+  expect(screen.getAllByText(/Login/i).length).toBe(2)
 })
